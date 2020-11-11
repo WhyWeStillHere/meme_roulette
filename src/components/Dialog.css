@@ -93,8 +93,13 @@
     padding: 0px;
 }
 
+.uploadPicture.uploadPicture {
+    max-height: 100px;
+}
+
 .uploadPicturesWrapper.uploadPicturesWrapper {
     background-color: #eeeeff5b;
+    max-height: 125px;
 }
 
 .deleteImage.deleteImage {

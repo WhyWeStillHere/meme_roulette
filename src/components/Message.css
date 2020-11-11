@@ -1,0 +1,33 @@
+.message.from-me {
+display: flex;
+flex-direction: column;
+align-items: flex-end;
+justify-content: flex-end;
+margin-bottom: 5px;
+}
+
+.message.from-me .message-body {
+background-color: #dacc3e;
+color: black;
+}
+
+.message {
+margin-bottom: 20px;
+}
+
+.message-body {
+max-width: 80%;
+display: inline-block;
+padding: 20px;
+background-color: #00ADA3;
+border: 1px;
+border-radius: 5px;
+padding-right: 50px;
+}
+
+.username {
+font-weight: bold;
+font-size: 0.9rem;
+color: #424B54;
+margin-bottom: 5px;
+}

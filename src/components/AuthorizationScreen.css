@@ -1,0 +1,60 @@
+.authorization_page{
+    background: #FFFFFF;
+}
+
+.sign_up_button {
+    /* Sign up button */
+
+    position: absolute;
+    width: 40%;
+    height: 10%;
+    left: 50%;
+    top: 70%;
+    -ms-transform: translate(-50%, -70%);
+    transform: translate(-50%, -70%);
+
+    background: #C4C4C4;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 4vh;
+    line-height: 4vh;
+    /* identical to box height */
+    text-align: center;
+
+    color: #000000;
+}
+
+.login_button{
+    position: absolute;
+    width: 40%;
+    height: 10%;
+    left: 50%;
+    top: 90%;
+    -ms-transform: translate(-50%, -90%);
+    transform: translate(-50%, -90%);
+
+    background: #C4C4C4;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 4vh;
+    line-height: 4vh;
+    text-align: center;
+
+    color: #000000;
+}
+
+.circle_icon {
+    position: absolute;
+    width: 35vh;
+    height: 35vh;
+    border-radius: 100%;
+    left: 50%;
+    top: 20%;
+    -ms-transform: translate(-50%, -20%);
+    transform: translate(-50%, -20%);
+    background: #00ADA3;
+}

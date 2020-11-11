@@ -1,0 +1,72 @@
+
+.circle-icon {
+    border-radius: 50%;
+    width: 33vh;
+    height: 33vh;
+    min-height: 120px;
+    min-width: 120px;
+    background: #00ADA3;
+}
+
+.login-base-component {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  min-height: 600px;
+}
+
+.login-content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+  
+.login-button {
+  background-color: #C4C4C4;
+  color: black;
+  padding: 14px 20px;
+  margin: 20px 0;
+  cursor: pointer;
+  width: 100%;
+}
+
+.imgcontainer {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+  margin: 24px 0 12px 0;
+  padding: 20px;
+  min-width: fit-content;
+  min-height: fit-content;
+}
+
+img.avatar {
+  width: 40%;
+  border-radius: 50%;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+  padding: 16px;
+  width: 60%;
+}
+
+.login-group {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+}

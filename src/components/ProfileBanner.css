@@ -1,0 +1,25 @@
+.profile-banner {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 10px;
+    padding: 10px;
+    margin-bottom: 30px;
+    background: #C4C4C4;
+}
+
+.profile-banner-icon {
+    width: 10vh;
+    height: 10vh;
+    max-width: 75px;
+    min-width: 30px;
+    max-height: 75px;
+    min-height: 30px;
+    border-radius: 100%;
+    background: #00ADA3;
+}
+
+.profile-banner-username {
+    margin-left: 20px;
+}

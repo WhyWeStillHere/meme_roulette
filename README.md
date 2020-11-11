@@ -1,3 +1,5 @@
+## Description
+
 This project is my fullstack study project. It implements site, what allows user to excange memes with random people around the globe
 
 ## Available Scripts

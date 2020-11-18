@@ -20,8 +20,6 @@ class Messages extends React.Component {
                 fromMe={message.fromMe} />
             );
           });
-        console.log(messages)
-        console.log(this.props.messages)
         return (
             <div className='messages' id='messageList'>
                 { messages }

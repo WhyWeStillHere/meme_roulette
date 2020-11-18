@@ -27,7 +27,8 @@ class LoginScreen extends React.Component {
             username: null,
             password: null,
             submitted: false,
-            redirect: false
+            redirect: false,
+            error: ''
         };
     }
 
@@ -41,10 +42,10 @@ class LoginScreen extends React.Component {
                 localStorage.setItem('user', result[0]["id"]);
                 this.setState({redirect: true});
             } else {
-                console.log("ERROR!!!")
+                this.setState({error: "Incorrent login or password"});
             }
         } else {
-            console.log("ERROR!!!")
+            this.setState({error: "Incorrent login or password"});
         }
     }
 
@@ -79,6 +80,7 @@ class LoginScreen extends React.Component {
                             <label htmlFor="password">Password</label>
                             <input type="password" name="password" placeholder="password" onChange={this.handleChange}></input>
                         </div>
+                        <small type="error-text" className="login-error-text">{this.state.error}</small>
                         <button type="submit" className="login-button" onClick={this.handleSubmit}>
                             Login
                         </button>

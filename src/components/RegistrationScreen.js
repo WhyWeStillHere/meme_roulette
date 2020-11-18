@@ -72,12 +72,12 @@ class RegistrationScreen extends React.Component {
         switch(name) {
             case "username":
                 formErrors.username = value.length < 3 
-                ? 'minimum 3 characters required' 
+                ? 'Minimum 3 characters required' 
                 : '';
                 break;
             case "password":
                 formErrors.password = value.length < 6
-                ? 'minimum 6 characters required' 
+                ? 'Minimum 6 characters required' 
                 : '';
                 break;
             default:
@@ -104,10 +104,12 @@ class RegistrationScreen extends React.Component {
                         <div className="registration-form-group">
                             <label htmlFor="username">Username</label>
                             <input type="text" name="username" onChange={this.handleChange}></input>
+                            <small type="error-text" className="error-text">{this.state.formErrors.username}</small>
                         </div>
                         <div className="registration-form-group">
                             <label htmlFor="password">Password</label>
                             <input type="password" name="password" onChange={this.handleChange}></input>
+                            <small type="error-text" className="error-text">{this.state.formErrors.password}</small>
                         </div>
                     </form>
                 </div>

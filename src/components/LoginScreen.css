@@ -70,3 +70,9 @@ img.avatar {
   flex-direction: column;
   width: fit-content;
 }
+
+.login-error-text {
+  color: red;
+  margin-bottom: 5px;
+  margin-top: 20px;
+}

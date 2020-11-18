@@ -15,7 +15,7 @@ class MainPage extends React.Component {
 
     render() {
         return (
-            <Link to={'/dialog/' + this.state.user_profile_id}>
+            <Link to={'/dialog/' + this.state.user_profile_id} className="main-page">
                 <Dialog/>
                 <div className="profile-badges">
                     <ProfileBanner username="Your name" profile_id={this.state.user_profile_id}/>

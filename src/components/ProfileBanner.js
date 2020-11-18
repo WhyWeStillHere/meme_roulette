@@ -28,9 +28,9 @@ class ProfileBanner extends React.Component {
         {this.renderRedirect()}
         <img className='profile-banner-icon' alt=''>
         </img>
-        <div className='profile-banner-username'>
+        <text className='profile-banner-username'>
           { this.props.username }
-        </div>
+        </text>
       </div>
     );
   }

@@ -6,6 +6,7 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import NotFound from './NotFound';
 import LoginScreen from './LoginScreen'
 import ProfilePage from './ProfilePage'
+import PrivateRoute from './PrivateRoute'
 import './App.css'
 
 function App() {
@@ -15,8 +16,8 @@ function App() {
             <Switch>
                 <Route path='/login' component={LoginScreen} />
                 <Route path='/sign_up' component={RegistrationScreen} />
-                <Route path='/dialog' component={MainPage} />
-                <Route path='/profile' component={ProfilePage} />
+                <PrivateRoute path='/dialog/:profile_id' component={MainPage} />
+                <Route path='/profile/:profile_id' component={ProfilePage} />
                 <Route exact path='/' component={AuthorizationScreen} />
                 <Route component={NotFound} />
             </Switch>

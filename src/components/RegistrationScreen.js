@@ -1,15 +1,6 @@
 import React from 'react'
+import { Redirect } from 'react-router-dom'
 import './RegistrationScreen.css'
-
-const formValid = ({formErrors, ...rest}) => {
-    let valid = true;
-
-    Object.values(formErrors).forEach(val => {val.length > 0 && (valid = false)});
-
-    Object.values(rest).forEach(val => { val === null && (valid = false)});
-
-    return valid;
-}
 
 class RegistrationScreen extends React.Component {
     constructor(props) {
@@ -22,17 +13,54 @@ class RegistrationScreen extends React.Component {
                 username: "",
                 password: "",
             },
-            submitted: false
+            submitted: false,
+            redirect: false,
         };
     }
 
-    handleSubmit = e => {
-        e.preventDefault();
+    formValid = async () => {
+        let valid = true;
+        let formErrors = this.state.formErrors;
+    
+        Object.values(formErrors).forEach(val => {val.length > 0 && (valid = false)});
+    
+        Object.values(["username", "password"]).forEach(val => { val === null && (valid = false)});
+    
+        const {username} = this.state
+    
+        let result = await fetch(`http://localhost:3000/users?username=${username}`, {
+            method: 'get',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then((result) => result.json())
+    
+        if (result.length !== 0) {
+            valid = false
+            formErrors.username = "Username is already taken"
+        }
+    
+        this.setState({formErrors});
+        return valid;
+    }
 
-        if (formValid(this.state)) {
-            console.log("SUBMIT!!!")
+    handleSubmit = async e => {
+        e.preventDefault();
+        const {username, password} = this.state
+
+        if (await this.formValid()) {
+            console.log("Form valid")
+            fetch("http://localhost:3000/users", {
+                method: 'post',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({username, password})
+            })
+            localStorage.setItem('user', this.state.user_id);
+            this.setState({redirect: true});
         } else {
-            console.log("ERROR!!!")
+            console.log(this.state.formErrors)
         }
     }
 
@@ -56,14 +84,20 @@ class RegistrationScreen extends React.Component {
                 break;
         }
 
-        console.log(formErrors)
-
         this.setState({formErrors, [name]: value });
     }
+
+    renderRedirect = () => {
+        if (this.state.redirect) {
+          const user_id = localStorage.getItem('user');
+          return <Redirect to={'/dialog/' + user_id} />
+        }
+      }
 
     render() {
         return (
             <div className="registration-base-component">
+                {this.renderRedirect()}
                 <div className="registration-header">Create your account</div>
                 <div className="registration-content">
                     <form className="registration-form">

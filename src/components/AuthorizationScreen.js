@@ -4,7 +4,7 @@ import './AuthorizationScreen.css'
 
 function AuthorizationScreen() {
     return (
-        <div className='authorization_page'>
+        <div>
             <span class="circle_icon"></span>
             <Link to="/sign_up">
                 <button className='sign_up_button'>Sign up</button>

@@ -17,7 +17,8 @@ class ProfilePage extends React.Component {
 
   renderRedirect = () => {
     if (this.state.redirect) {
-      return <Redirect to='/dialog' />
+      const user_id = localStorage.getItem('user');
+      return <Redirect to={'/dialog/' + user_id} />
     }
   }
 

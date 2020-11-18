@@ -1,5 +1,15 @@
 import React from 'react'
+import { Redirect } from 'react-router-dom'
 import './LoginScreen.css'
+
+const GetUserData = async ({username, password}) => {
+    return await fetch(`http://localhost:3000/users?username=${username}&password=${password}`, {
+        method: 'get',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then((result) => result.json())
+}
 
 const formValid = state => {
     let valid = true;
@@ -16,15 +26,23 @@ class LoginScreen extends React.Component {
         this.state = {
             username: null,
             password: null,
-            submitted: false
+            submitted: false,
+            redirect: false
         };
     }
 
-    handleSubmit = e => {
+    handleSubmit = async e => {
         e.preventDefault();
 
         if (formValid(this.state)) {
-            console.log("SUBMIT!!!")
+            const result = await GetUserData(this.state)
+            if (result.length > 0) {
+                console.log(result[0]["id"])
+                localStorage.setItem('user', result[0]["id"]);
+                this.setState({redirect: true});
+            } else {
+                console.log("ERROR!!!")
+            }
         } else {
             console.log("ERROR!!!")
         }
@@ -35,11 +53,19 @@ class LoginScreen extends React.Component {
         const { name, value } = e.target;
 
         this.setState({[name]: value });
-    }
+    }    
+    
+    renderRedirect = () => {
+        if (this.state.redirect) {
+          const user_id = localStorage.getItem('user');
+          return <Redirect to={'/dialog/' + user_id} />
+        }
+      }
 
     render() {
         return (
             <div className='login-base-component'>
+                {this.renderRedirect()}
                 <div className="imgcontainer">
                     <span className='circle-icon'></span>
                 </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import './StatisticField.css'
+import './css/StatisticField.css'
 
 class StatisticField extends React.Component {
   render() {

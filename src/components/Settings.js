@@ -1,6 +1,6 @@
 import React from 'react';
 import StatisticField from './StatisticField'
-import './Settings.css'
+import './css/Settings.css'
 
 class Settings extends React.Component {
   render() {

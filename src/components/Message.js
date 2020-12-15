@@ -1,5 +1,5 @@
 import React from 'react';
-import './Message.css'
+import './css/Message.css'
 
 class Message extends React.Component {
   render() {
@@ -11,7 +11,9 @@ class Message extends React.Component {
           { this.props.username }
         </div>
         <div className='message-body'>
-          { this.props.message }
+          { this.props.message !== '' 
+            ? this.props.message
+            : <img src={this.props.image_url} alt='' className='message-image'/>}
         </div>
       </div>
     );

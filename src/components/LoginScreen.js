@@ -1,14 +1,11 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
-import './LoginScreen.css'
+import './css/LoginScreen.css'
+import { signIn } from './actions/auth'
+import { isOk } from './utils/response_info'
 
 const GetUserData = async ({username, password}) => {
-    return await fetch(`http://localhost:3000/users?username=${username}&password=${password}`, {
-        method: 'get',
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    }).then((result) => result.json())
+    return await signIn(username, password)()
 }
 
 const formValid = state => {
@@ -37,12 +34,14 @@ class LoginScreen extends React.Component {
 
         if (formValid(this.state)) {
             const result = await GetUserData(this.state)
-            if (result.length > 0) {
-                console.log(result[0]["id"])
-                localStorage.setItem('user', result[0]["id"]);
-                this.setState({redirect: true});
+            if (result === null) {
+                this.setState({error: "Server error"});
             } else {
-                this.setState({error: "Incorrent login or password"});
+                if (isOk(result)) {
+                    this.setState({redirect: true});
+                } else {
+                    this.setState({error: "Incorrent login or password"});
+                }
             }
         } else {
             this.setState({error: "Incorrent login or password"});
@@ -58,8 +57,7 @@ class LoginScreen extends React.Component {
     
     renderRedirect = () => {
         if (this.state.redirect) {
-          const user_id = localStorage.getItem('user');
-          return <Redirect to={'/dialog/' + user_id} />
+          return <Redirect to={'/dialog'} />
         }
       }
 

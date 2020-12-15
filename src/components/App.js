@@ -7,18 +7,18 @@ import NotFound from './NotFound';
 import LoginScreen from './LoginScreen'
 import ProfilePage from './ProfilePage'
 import PrivateRoute from './PrivateRoute'
-import './App.css'
+import './css/App.css'
 
 function App() {
     return (
         <div>
         <Router>
             <Switch>
+                <Route exact path='/' component={AuthorizationScreen} />
                 <Route path='/login' component={LoginScreen} />
                 <Route path='/sign_up' component={RegistrationScreen} />
-                <PrivateRoute path='/dialog/:profile_id' component={MainPage} />
+                <PrivateRoute path='/dialog' component={MainPage} />
                 <Route path='/profile/:profile_id' component={ProfilePage} />
-                <Route exact path='/' component={AuthorizationScreen} />
                 <Route component={NotFound} />
             </Switch>
         </Router>

@@ -1,13 +1,14 @@
 import React from 'react'
 import Message from "./Message"
-import "./Messages.css"
+import "./css/Messages.css"
 
 class Messages extends React.Component {
-    componentDidUpdate() {
-        // There is a new message in the state, scroll to bottom of list
+    componentDidUpdate(prevProps) {
+      if (this.props.messages !== prevProps.messages) {
         const objDiv = document.getElementById('messageList');
         objDiv.scrollTop = objDiv.scrollHeight;
       }
+    }
 
 
     render() {
@@ -17,6 +18,7 @@ class Messages extends React.Component {
                 key={i}
                 username={message.username}
                 message={message.message}
+                image_url={message.image_url}
                 fromMe={message.fromMe} />
             );
           });

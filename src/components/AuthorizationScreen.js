@@ -1,11 +1,11 @@
 import React from 'react'
-import {Link} from 'react-router-dom';
-import './AuthorizationScreen.css'
+import { Link } from 'react-router-dom'
+import './css/AuthorizationScreen.css'
 
 function AuthorizationScreen() {
     return (
         <div>
-            <span class="circle_icon"></span>
+            <span className="circle_icon"></span>
             <Link to="/sign_up">
                 <button className='sign_up_button'>Sign up</button>
             </Link>

@@ -1,6 +1,8 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
-import './RegistrationScreen.css'
+import './css/RegistrationScreen.css'
+import { signUp } from './actions/auth'
+import { isOk } from './utils/response_info';
 
 class RegistrationScreen extends React.Component {
     constructor(props) {
@@ -18,27 +20,14 @@ class RegistrationScreen extends React.Component {
         };
     }
 
-    formValid = async () => {
+
+    formValid = () => {
         let valid = true;
         let formErrors = this.state.formErrors;
     
         Object.values(formErrors).forEach(val => {val.length > 0 && (valid = false)});
     
         Object.values(["username", "password"]).forEach(val => { val === null && (valid = false)});
-    
-        const {username} = this.state
-    
-        let result = await fetch(`http://localhost:3000/users?username=${username}`, {
-            method: 'get',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }).then((result) => result.json())
-    
-        if (result.length !== 0) {
-            valid = false
-            formErrors.username = "Username is already taken"
-        }
     
         this.setState({formErrors});
         return valid;
@@ -47,21 +36,21 @@ class RegistrationScreen extends React.Component {
     handleSubmit = async e => {
         e.preventDefault();
         const {username, password} = this.state
+        let formErrors = this.state.formErrors
 
-        if (await this.formValid()) {
-            console.log("Form valid")
-            fetch("http://localhost:3000/users", {
-                method: 'post',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({username, password})
-            })
-            localStorage.setItem('user', this.state.user_id);
-            this.setState({redirect: true});
+        if (this.formValid()) {
+            let result = await signUp(username, password)()
+
+            if (isOk(result)) {
+                this.setState({redirect: true});
+            } else if (result.status === 400) {
+                formErrors.username = "Username is already taken"
+            } else {
+                formErrors.password = "Server error"
+            }
         } else {
-            console.log(this.state.formErrors)
         }
+        this.setState({formErrors});
     }
 
     handleChange = e => {
@@ -89,8 +78,7 @@ class RegistrationScreen extends React.Component {
 
     renderRedirect = () => {
         if (this.state.redirect) {
-          const user_id = localStorage.getItem('user');
-          return <Redirect to={'/dialog/' + user_id} />
+          return <Redirect to={'/dialog'} />
         }
       }
 

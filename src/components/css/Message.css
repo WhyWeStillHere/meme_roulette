@@ -18,17 +18,20 @@ margin-bottom: 20px;
 .message-body {
 max-width: 80%;
 display: inline-block;
-padding: 20px;
+padding: 10px;
 background-color: #00ADA3;
 color: black;
 border: 1px;
 border-radius: 5px;
-padding-right: 50px;
 }
 
 .username {
 font-weight: bold;
-font-size: 0.9rem;
-color: #424B54;
+font-size: 1.4rem;
+color: #131a20;
 margin-bottom: 5px;
+}
+
+.message-image {
+    border-radius: 5px;
 }
